@@ -35,5 +35,5 @@ WORKDIR $HOME
 RUN wget https://get.jenkins.io/war-stable/2.303.1/jenkins.war
 ENTRYPOINT ["java", "-jar", "jenkins.war"]
 
-# do `$ docker run -p 8080:8080 jenkins:tag` when running the first time
+# do `$ docker run -p 8080:8080 name:tag` when running the first time
 # then do `$ docker start $container_id` to reopen it.
