@@ -7,9 +7,7 @@ RUN apk add wget \
       && apk add openrc \
       && apk add fontconfig \
       && apk add freetype \
-      && apk add openjdk8 \
-      && apk add openjdk8-jre \
-      && apk add openjdk8-jre-base \
+      && apk add openjdk11 \
       && apk add ttf-dejavu \
       && apk add git \
       && apk add xvfb \
@@ -32,7 +30,7 @@ USER $USER
 WORKDIR $HOME
 
 # 6) add an entrypoint instruction to run jenkins
-RUN wget https://get.jenkins.io/war-stable/2.303.1/jenkins.war
+RUN wget https://get.jenkins.io/war-stable/2.289.3/jenkins.war
 ENTRYPOINT ["java", "-jar", "jenkins.war"]
 
 # do `$ docker run -p 8080:8080 name:tag` when running the first time
