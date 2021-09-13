@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func TestFindMissingDrone_basic(t *testing.T) {
+func TestFindMissingDroneBasic(t *testing.T) {
 	result := FindMissingDrone([]int{1, 3, 2, 2, 3})
 
 	if result != 1 {
@@ -14,7 +14,7 @@ func TestFindMissingDrone_basic(t *testing.T) {
 	}
 }
 
-func TestFindMissingDrone_basic2(t *testing.T) {
+func TestFindMissingDroneBasic2(t *testing.T) {
 	result := FindMissingDrone([]int{1, 4, 4, 2, 3, 1, 2})
 
 	if result != 3 {
@@ -22,7 +22,7 @@ func TestFindMissingDrone_basic2(t *testing.T) {
 	}
 }
 
-func TestFindMissingDrone_single(t *testing.T) {
+func TestFindMissingDroneSingle(t *testing.T) {
 	result := FindMissingDrone([]int{3})
 
 	if result != 3 {
@@ -30,7 +30,7 @@ func TestFindMissingDrone_single(t *testing.T) {
 	}
 }
 
-func TestFindMissingDrone_random(t *testing.T) {
+func TestFindMissingDroneRandom(t *testing.T) {
 	rand.Seed(time.Now().UnixNano())
 
 	missingDrone := rand.Int()

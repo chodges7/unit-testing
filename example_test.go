@@ -3,7 +3,7 @@ package go_unit_test_bootcamp
 import "testing"
 
 // Simple test - verifies that a single repo can be indexed correctly
-func TestIndexGitHubRepositoriesByOrg_basic(t *testing.T) {
+func TestIndexGitHubRepositoriesByOrgBasic(t *testing.T) {
 	repos := []*GitHubRepository{
 		{
 			Organization: "liatrio",
@@ -27,7 +27,7 @@ func TestIndexGitHubRepositoriesByOrg_basic(t *testing.T) {
 // ------ Test-Simple test ------
 
 // More complicated test - verify that multiple repos are indexed correctly
-func TestIndexGitHubRepositoriesByOrg_multiple(t *testing.T) {
+func TestIndexGitHubRepositoriesByOrgMultiple(t *testing.T) {
 	repos := []*GitHubRepository{
 		{
 			Organization: "liatrio",
@@ -66,7 +66,7 @@ func TestIndexGitHubRepositoriesByOrg_multiple(t *testing.T) {
 // ----- Test-Complicated test -----
 
 // Edge case test - verify that zero input repositories results in an empty map
-func TestIndexGitHubRepositoriesByOrg_empty(t *testing.T) {
+func TestIndexGitHubRepositoriesByOrgEmpty(t *testing.T) {
 	var repos []*GitHubRepository
 
 	result := IndexGitHubRepositoriesByOrg(repos)
