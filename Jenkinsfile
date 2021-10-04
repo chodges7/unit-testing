@@ -1,23 +1,21 @@
 
 pipeline {
     agent any
+    tools {
+        go 'go-1.16.8'
+    }
 
     stages {
-        stage('SCM') {
-            steps {
-                checkout scm
-            }
-        }
         stage('Build') {
             steps {
                 echo 'Building...'
-                go build
+                sh 'go build'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing...'
-                go test -v
+                sh 'go test -v'
             }
         }
         stage('Deploy') {
