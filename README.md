@@ -8,7 +8,7 @@
 - Finally, it might be beneficial to also have this command open:
     - `watch docker-compose ps`
 - Jenkins should be spun up in `http://localhost:8080`
-- Artifactory should be spun up in `http://localhost:8082`
+- Artifactory should be spun up in `http://localhost:8081`
 
 - Finally you'll configure the jenkins job to point to this git repo and run the following commands:
 	- TEST stage: `go test -v`
