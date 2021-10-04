@@ -2,12 +2,21 @@ version: "3"
 
 services:
   jenkins:
-    build: .
+    build: ./docker/jenkins/
     volumes:
-      - jenkins_data:/var/jenkins_home
+      - jenkins_data:/home/myuser
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - "8080:8080"
 
+  artifactory:
+    build: ./docker/artifactory/
+    ports:
+      - "8081:8081"
+      - "8082:8082"
+    volumes:
+      - artifactory_data:/jfrog
+
 volumes:
   jenkins_data:
+  artifactory_data:
