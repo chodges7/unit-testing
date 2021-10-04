@@ -1,19 +1,15 @@
-### System Requirements
-Before you install, please validate the system requirements provided here: https://service.jfrog.org/installer/System+Requirements  
-​
-### How to run
-* `./config.sh` # should provide you an interactive install or upgrade
-​
-### Default credentials for PostgreSQL
-username: artifactory
-password: password
+# Unit testing for Liatio's Automated-testing bootcamp section
 
-### Install or upgrade using docker volumes
-* To use docker-volumes, the script `./config.sh` will not need to be run. Instead, For more deatils on install or upgrade using docker volumes refer below links and use the template `docker-compose-volumes.yaml`.
+## Usage
+- To spin up the two containers use docker-compose with the following command:
+    - `docker-compose up -d --build`
+- To see the logs use this command:
+    - `docker-compose logs -f`
+- Finally, it might be beneficial to also have this command open:
+    - `watch docker-compose ps`
+- Jenkins should be spun up in `http://localhost:8080`
+- Artifactory should be spun up in `http://localhost:8082`
 
-### MORE DETAILS 
-For more details on installation scripts, refer: https://service.jfrog.org/installer/Installing+Artifactory
-
-For more details on  Upgrade scripts, refer: https://service.jfrog.org/installer/Upgrading+Artifactory
-
-For troubleshooting, refer: https://service.jfrog.org/installer/Troubleshooting
+- Finally you'll configure the jenkins job to point to this git repo and run the following commands:
+	- TEST stage: `go test -v`
+	- BUILD stage: `go build`
