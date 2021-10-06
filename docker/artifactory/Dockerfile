@@ -1,40 +1,24 @@
-# 1) grab apline linux base image
-FROM alpine:3.14.0
+FROM centos:7.9.2009 AS centos 
 
-# 2) Log in as Root
-USER root 
+RUN yum -y update
 
-# 3) install needed tools
-RUN apk add wget \
-      && apk add bash \
-      && apk add rpm \
-      && apk add net-tools \
-      && apk add rsync \
-      && apk add openjdk8 \
-      && apk add openjdk8-jre-base 
+RUN yum install -y java-1.8.0-openjdk-devel
 
-# 4) update packages 
-RUN apk update \
-      && apk upgrade \
-      && rm -rf /var/lib/apt/lists/*
+RUN echo "export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-1.el7_9.x86_64" >> /etc/profile
+RUN . /etc/profile
 
-# 4) expose port 8081 + 8082
+RUN yum install -y net-tools rsync wget curl
+RUN wget https://releases.jfrog.io/artifactory/bintray-artifactory/org/artifactory/oss/jfrog-artifactory-oss/7.23.3/jfrog-artifactory-oss-7.23.3-linux.tar.gz
+RUN rm -rf /var/lib/apt/lists/*
+
 EXPOSE 8081
 EXPOSE 8082
 
-# 6) Wget artifactory.zip file and unzip 
-RUN wget https://repo.jfrog.org/artifactory/oss-releases-local/org/artifactory/oss/jfrog-artifactory-oss/6.10.0/jfrog-artifactory-oss-6.10.0.zip
-RUN unzip jfrog-artifactory-oss-6.10.0.zip
+RUN mkdir jfrog
+RUN mv jfrog-artifactory-oss-7.23.3-linux.tar.gz jfrog
+WORKDIR /jfrog
+RUN tar -xvf jfrog-artifactory-oss-7.23.3-linux.tar.gz
+RUN mv artifactory-oss-7.23.3 artifactory
+WORKDIR /jfrog/artifactory/app/bin
 
-# 7) Make needed jfrog directory under /opt and move artifactory
-RUN mkdir /opt/jfrog
-RUN mv artifactory-oss-6.10.0 artifactory
-RUN mv artifactory /opt/jfrog
-RUN export JFROG_HOME=/opt/jfrog
-WORKDIR /opt/jfrog/artifactory/bin
-
-# 8) start artifactory
 ENTRYPOINT ["./artifactoryctl"]
-
-# do `$ docker run -p 8081:8081 -p 8082:8082 image_name` when running the first time
-# Log in with http://localhost:8081/artifactory/webapp/#/home

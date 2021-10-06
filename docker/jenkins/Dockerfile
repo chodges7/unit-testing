@@ -11,7 +11,8 @@ RUN apk add wget \
       && apk add ttf-dejavu \
       && apk add git \
       && apk add xvfb \
-      && apk add go
+      && apk add go \
+      && apk add curl
 
 # 3a) update all the packages 
 RUN apk update \
