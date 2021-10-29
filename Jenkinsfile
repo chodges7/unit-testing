@@ -5,18 +5,19 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                sh 'go build'
+                sh 'goreleaser build --rm-dist'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing...'
-                sh 'go test -v'
+                sh 'go test'
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying...'
+                echo 'Publish...'
+                sh 'goreleaser publish --rm-dist'
             }
         }
     }
