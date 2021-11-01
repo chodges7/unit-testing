@@ -8,7 +8,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                sh 'go build'
+                sh 'goreleaser build --rm-dist'
             }
         }
         stage('Test') {
