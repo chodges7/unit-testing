@@ -14,7 +14,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing...'
-                sh 'go test example.go example_test.go drone.go drone_test.go -v'
+                sh 'go test -v'
             }
         }
         stage('Deploy') {
