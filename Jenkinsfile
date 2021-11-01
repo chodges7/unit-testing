@@ -17,7 +17,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Publish...'
-                sh 'goreleaser publish --rm-dist'
+                sh 'goreleaser release --rm-dist'
             }
         }
     }
