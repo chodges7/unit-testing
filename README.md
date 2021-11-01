@@ -16,6 +16,8 @@ To use this repo, you will need to setup a Jenkins pipeline project pointing to 
     - `watch docker compose ps`
 - Jenkins should be spun up in `http://localhost:8080`
 - You will also need to setup a github PAT (Personal Access Token) setup in the Jenkins instance.
+The name of the PAT is described as `github-token` in the Jenkinsfile, but the name of the
+credential can be changed to whatever you like.
 - Finally, make a pipeline job that points to this repo.
 - The Jenkinsfile in the repo will run the following stages:
 
