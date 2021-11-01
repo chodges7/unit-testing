@@ -5,16 +5,16 @@ pipeline {
         GITHUB_TOKEN = credentials('GITHUB_TOKEN')
     }
     stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                sh 'go build'
+            }
+        }
         stage('Test') {
             steps {
                 echo 'Testing...'
                 sh 'go test'
-            }
-        }
-        stage('Build') {
-            steps {
-                echo 'Building...'
-                sh 'goreleaser build --rm-dist'
             }
         }
         stage('Deploy') {
