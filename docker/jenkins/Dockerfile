@@ -12,7 +12,8 @@ RUN apk add wget \
       && apk add git \
       && apk add xvfb \
       && apk add go \
-      && apk add curl
+      && apk add curl \
+      && apk add maven
 
 # 3a) update all the packages 
 RUN apk update \
@@ -30,9 +31,12 @@ RUN adduser -D $USER
 USER $USER
 WORKDIR $HOME
 
-# 6) add an entrypoint instruction to run jenkins
-RUN wget https://get.jenkins.io/war-stable/2.303.1/jenkins.war
-ENTRYPOINT ["java", "-jar", "jenkins.war"]
+# 5.5) Set JAVA_HOME variable
+ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk
+RUN export JAVA_HOME
+RUN go install github.com/goreleaser/goreleaser@latest
+ENV PATH="/home/myuser/go/bin:$PATH"
 
-# do `$ docker run -p 8080:8080 name:tag` when running the first time
-# then do `$ docker start $container_id` to reopen it.
+# 6) add an entrypoint instruction to run jenkins
+RUN wget https://get.jenkins.io/war-stable/2.303.2/jenkins.war
+ENTRYPOINT ["java", "-jar", "jenkins.war"]
