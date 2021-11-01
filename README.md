@@ -9,11 +9,11 @@ built contents to Github Releases.
 To use this repo, you will need to setup a Jenkins pipeline project pointing to this repo.
 
 - First, spin up the container using docker compose with the following command:
-	   - `docker compose up -d --build`
+	- `docker compose up -d --build`
 - To see the logs use this command: (this is helpful to see the Jenkins key)
-    - `docker compose logs -f`
+	- `docker compose logs -f`
 - It might be beneficial to also have this command open:
-    - `watch docker compose ps`
+	- `watch docker compose ps`
 - Jenkins should be spun up in `http://localhost:8080`
 - You will also need to setup a github PAT (Personal Access Token) setup in the Jenkins instance.
 The name of the PAT is described as `github-token` in the Jenkinsfile, but the name of the
@@ -22,9 +22,9 @@ credential can be changed to whatever you like.
 - The Jenkinsfile in the repo will run the following stages:
 
 ```go
-go build 						// build stage
-go test  						// test stage
-goreleaser release --rm-dist	// deploy to github releases
+go build 	// build stage
+go test 	// test stage
+goreleaser release --rm-dist 	// deploy to github releases
 ```
 - Note: You will need to add a tag to the commit just before running the build in Jenkins or 
 else it will thow an error.
