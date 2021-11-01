@@ -24,5 +24,5 @@ func FindMissingDrone(droneIds []int) int {
 }
 
 func main() {
-    print("Hello World")
+	print("Hello World")
 }
